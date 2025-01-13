@@ -1,0 +1,64 @@
+Metadata-Version: 2.1
+Name: wagtail-oauth2
+Version: 1.0.0
+Summary: OAuth2.0 authentication fo wagtail
+Home-page: https://wagtail-oauth2.readthedocs.io/en/latest/
+License: BSD-Derived
+Author: Guillaume Gauvrit
+Author-email: guillaume@gandi.net
+Requires-Python: >=3.7,<4.0
+Classifier: Framework :: Wagtail
+Classifier: Framework :: Wagtail :: 2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: Django (>=3.2.0,<5)
+Requires-Dist: requests (>=2.26.0)
+Requires-Dist: wagtail (>=2.14,<4.0)
+Project-URL: Repository, https://github.com/Gandi/wagtail-oauth2
+Description-Content-Type: text/x-rst
+
+==============
+Wagtail OAuth2
+==============
+
+.. image:: https://readthedocs.org/projects/wagtail-oauth2/badge/?version=latest
+   :target: https://wagtail-oauth2.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
+
+.. image:: https://github.com/Gandi/wagtail-oauth2/actions/workflows/main.yml/badge.svg
+   :target: https://github.com/Gandi/wagtail-oauth2/actions/workflows/main.yml
+   :alt: Build Status
+
+
+.. image:: https://codecov.io/gh/Gandi/wagtail-oauth2/branch/main/graph/badge.svg?token=VN14GVV3Y0
+   :target: https://codecov.io/gh/Gandi/wagtail-oauth2
+   :alt: Coverage
+
+
+Plugin to replace Wagtail default login by an OAuth2.0 Authorization Server.
+
+What is wagtail-oauth2
+----------------------
+
+OAuth2.0 is an authorization framework widely used and usually,
+OAuth2.0 authorization servers grant authorization on authenticated user.
+
+
+The OAuth2 Authorization is used as an **identity provider**.
+
+
+Read More
+---------
+
+You can read the `full documentation of this library here`_.
+
+
+.. _`full documentation of this library here`: https://wagtail-oauth2.readthedocs.io/en/latest/

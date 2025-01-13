@@ -1,0 +1,14 @@
+
+ 
+    <!-- Dropdown menu -->
+<div id="dropdown" class="z-10 block w-44  divide-amber-100 rounded bg-amber shadow dark:bg-amber-400" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="bottom" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(327px, 70px, 0px);">
+    {% for item in menu_items %}
+    <a href="{{ item.href }}" class="block px-4 py-2 text-sm text-white-700" role="menuitem" tabindex="-1">
+    {{ item.text }}
+    </a>
+    {% endfor %}
+    </div>
+<script src="https://unpkg.com/flowbite@1.5.1/dist/flowbite.js"></script>
+
+
+

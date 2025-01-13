@@ -1,0 +1,11 @@
+<li>
+    <a href="{% include 'nav_menus/get_url.html' with link=self %}"{% if self.open_in_new_tab %}target='_blank'{% endif %} >
+        {% if self.override_title %}
+            {{ self.override_title }}
+        {% elif self.page.title %}
+            {{ self.page.title }}
+        {% else %}
+            {{ self.link }}
+        {% endif %}
+    </a>
+</li>

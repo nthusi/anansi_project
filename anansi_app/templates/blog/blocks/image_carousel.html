@@ -1,0 +1,8 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div>
+    {% for item in block.value %}
+        {% image item width-400 as img %}
+        <img class="block w-full select-none" src="{{ img.url }}" alt="{{ img.alt }}">
+    {% endfor %}
+</div>

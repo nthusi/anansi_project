@@ -1,0 +1,28 @@
+{% extends "modeladmin/create.html" %}
+{% load i18n %}
+
+{% block form %}
+    <div class="campaign-admin">
+        <div class="campaign-admin__form">
+            {{ block.super }}
+        </div>
+        <div class="campaign-admin__preview">
+            <iframe class="campaign-admin__preview-frame"></iframe>
+        </div>
+    </div>
+{% endblock %}
+
+{% block form_actions %}
+    <nav aria-label="Actions">
+        <ul class="campaign-admin__actions">
+            <li class="actions">
+                {{ block.super }}
+            </li>
+            <li class="preview">
+                <button class="button campaign-preview icon icon-view" data-action="{{ view.create_url }}">
+                    {% trans "Reload preview" %}
+                </button>
+            </li>
+        </ul>
+    </nav>
+{% endblock form_actions %}

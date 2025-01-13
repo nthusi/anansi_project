@@ -1,0 +1,27 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./compose/local/web/dockerfile
+    image: anansi_project_web
+    command: /start
+    volumes:
+      - .:/anansi_app
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env/.dev-sample
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:14.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=anansi_project
+      - POSTGRES_USER=anansi_project
+      - POSTGRES_PASSWORD=anansi_project
+
+volumes:
+  postgres_data:

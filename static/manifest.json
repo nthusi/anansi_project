@@ -1,0 +1,25 @@
+{
+  "app.css": "http://localhost:9091/css/app.css",
+  "app.js": "http://localhost:9091/js/app.js",
+  "entrypoints": {
+    "app": {
+      "assets": {
+        "js": [
+          "http://localhost:9091/js/runtime.js",
+          "http://localhost:9091/js/vendors-node_modules_bootstrap_dist_js_bootstrap_bundle_js-node_modules_mini-css-extract-plug-7df851.js",
+          "http://localhost:9091/js/app.js"
+        ],
+        "css": [
+          "http://localhost:9091/css/app.css"
+        ]
+      }
+    }
+  },
+  "frontend/vendors/images/sample.jpg": "http://localhost:9091/frontend/vendors/images/sample.jpg",
+  "js/vendors-node_modules_bootstrap_dist_js_bootstrap_bundle_js-node_modules_mini-css-extract-plug-7df851.js": "http://localhost:9091/js/vendors-node_modules_bootstrap_dist_js_bootstrap_bundle_js-node_modules_mini-css-extract-plug-7df851.js",
+  "runtime.js": "http://localhost:9091/js/runtime.js",
+  "vendors/.gitkeep": "http://localhost:9091/vendors/.gitkeep",
+  "vendors/images/.gitkeep": "http://localhost:9091/vendors/images/.gitkeep",
+  "vendors/images/sample.jpg": "http://localhost:9091/vendors/images/sample.jpg",
+  "vendors/images/webpack.png": "http://localhost:9091/vendors/images/webpack.png"
+}

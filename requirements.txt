@@ -1,0 +1,14 @@
+Django==4.2
+wagtail==5.2
+python-webpack-boilerplate==1.0.3
+psycopg2-binary==2.9.10
+wagtail-markdown==0.12.1
+python-markdown-math==0.8
+django-crispy-forms==1.14.0
+crispy-tailwind==0.5.0
+wagtailmenus==3.1.3
+readtime==3.0.0
+wagtail-metadata==5.0.0
+wagtail-newsletter[mailchimp,mrml]==0.2.1
+django-allauth
+wagtail-nav-menus==3.12.0

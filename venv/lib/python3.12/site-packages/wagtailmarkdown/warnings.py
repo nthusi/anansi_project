@@ -1,0 +1,2 @@
+class WagtailMarkdownDeprecationWarning(DeprecationWarning):
+    pass

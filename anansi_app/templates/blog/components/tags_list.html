@@ -1,0 +1,17 @@
+{% load wagtailroutablepage_tags %}
+<div class="mb-4 border rounded-lg border-opacity-75 border-amber-300 shadow-xl overflow-hidden">
+    <div class="bg-amber-100 text-gray-900 px-6 py-4">
+        <h4 class="text-base font-medium">Tags</h4>
+    </div>
+    <div class="px-6 py-4">
+
+        {% for tag in tags %}
+            <a href="{% routablepageurl blog_page "post_by_tag" tag.slug %}" class="text-gray-600 hover:text-gray-800">
+                <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-amber-600 hover:bg-amber-500 focus:bg-amber-700 rounded-lg">{{ tag }}</span>
+            </a>
+        {% empty %}
+            No tags yet
+        {% endfor %}
+
+    </div>
+</div>
