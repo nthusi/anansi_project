@@ -1,6 +1,6 @@
 FROM node:16-stretch-slim as frontend-builder
 
-WORKDIR /app
+WORKDIR /anansi_app
 COPY . .
 
 RUN npm install
@@ -39,17 +39,17 @@ RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 RUN chown django /start
 
-WORKDIR /app
+WORKDIR /anansi_app
 
 # avoid 'permission denied' error
-RUN mkdir /app/static
-RUN mkdir /app/media
+RUN mkdir /anansi_app/static
+RUN mkdir /anansi_app/media
 
 # copy project code
 COPY . .
-COPY --from=frontend-builder /app/frontend/build /app/frontend/build
+COPY --from=frontend-builder /anansi_app/frontend/build /anansi_app/frontend/build
 
-RUN chown -R django:django /app
+RUN chown -R django:django /anansi_app
 
 USER django
 
