@@ -1,4 +1,4 @@
-#!/Users/muinde/anansi_project/venv/bin/python3.12
+#!/Users/muinde/anansi_project/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

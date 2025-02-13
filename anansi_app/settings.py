@@ -29,9 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z%#8zw1_f387q!asq+ej*m*et1cy(3i2=_8!1u_-48w7rt5@#u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".localhost",".127.0.0.1", ".ngrok.io", ".ngrok-free.app"]
 
 
 # Application definition
@@ -169,8 +169,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 STATIC_URL = '/static/'
 STATIC_ROOT = str(BASE_DIR/ 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = str(BASE_DIR / 'media')
@@ -185,7 +191,7 @@ WAGTAIL_SITE_NAME = 'Anansi'
 WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", "http://localhost:8000")
 
 STATICFILES_DIRS = [
-    str(BASE_DIR / "frontend/build"),
+    str(BASE_DIR / "frontend"),
 ]
 
 WEBPACK_LOADER = {

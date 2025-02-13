@@ -8,5 +8,9 @@ module.exports = {
     require('postcss-preset-env')({
       features: {'nesting-rules': false }
     }),
+    require('autoprefixer'), 
+    require('cssnano')({
+      preset: 'default'
+    }),
   ]
 };

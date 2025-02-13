@@ -1,0 +1,10 @@
+{% spaceless %}
+{% if link.page %}
+    {{ link.page.url }}
+{% elif link.link %}
+    {{ link.link }}
+{% elif link.url_name %}
+    {% url link.url_name as url %}
+    {% if url %}{{ url }}{% endif %}
+{% endif %}
+{% endspaceless %}

@@ -1,6 +1,8 @@
 {% load static wagtailuserbar webpack_loader blogapp_tags %}
 {% load i18n %}
 
+
+
 <!DOCTYPE html>
 <html class="h-100" lang="en">
     <head>
@@ -19,7 +21,10 @@
         <meta name="description" content="{{ page.search_description }}" />
         {% endblock %}
 
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
 
         {# Global stylesheets #}
         {% stylesheet_pack 'app' %}
@@ -35,7 +40,7 @@
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
-        <div class="flex flex-col min-h-screen">
+        <div class="flex flex-col min-h-screen bg-amber-200">
 
             {% wagtailuserbar %}
 
@@ -53,7 +58,6 @@
             {% include 'blog/components/footer.html' %}
 
         </div>
-        
     </body>
 
 {% javascript_pack 'app' %}
