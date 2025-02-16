@@ -4,7 +4,6 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-python << END
 postgres_ready() {
 
 import sys
