@@ -28,6 +28,9 @@ services:
         - RECAPTCHA_PRIVATE_KEY
         - RECAPTCHA_PUBLIC_KEY
     depends_on:
+      db:
+        condition: service_healthy
+    links:
       - db
 
   db:
@@ -38,6 +41,11 @@ services:
       - POSTGRES_DB=anansi_project
       - POSTGRES_USER=anansi_project
       - POSTGRES_PASSWORD=anansi_project
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
 volumes:
   postgres_data:
