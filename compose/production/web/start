@@ -4,7 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-python /anansi_app/manage.py collectstatic --noinput
-python /anansi_app/manage.py migrate
+python /anansi_project/manage.py collectstatic --noinput
+python /anansi_project/manage.py migrate
 
 /usr/local/bin/gunicorn anansi_app.wsgi:application --bind 0.0.0.0:8000 --chdir=/anansi_app
