@@ -1,27 +1,39 @@
 services:
-  web:
-    build:
-      context: .
-      dockerfile: ./compose/local/web/dockerfile
-    image: anansi_project_web
-    command: /start
-    volumes:
-      - .:/anansi_app
-    ports:
-      - 8000:8000
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
     env_file:
-      - ./.env/.dev-sample
+      - .env
+    environment:
+      POSTGRES_DB: ${SQL_NAME}
+      POSTGRES_USER: ${SQL_USERNAME}
+      POSTGRES_PASSWORD: ${SQL_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    container_name: anansi_app
+    restart: always
     depends_on:
       - db
-  
-  db:
-    image: postgres:14.0-alpine
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env
     environment:
-      - POSTGRES_DB=anansi_project
-      - POSTGRES_USER=anansi_project
-      - POSTGRES_PASSWORD=anansi_project
-
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DEBUG: ${DEBUG}
+      DJANGO_LOGLEVEL: ${DJANGO_LOGLEVEL}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS}
+      SQL_ENGINE: ${SQL_ENGINE}
+      SQL_NAME: ${SQL_NAME}
+      SQL_USERNAME: ${SQL_USERNAME}
+      SQL_PASSWORD: ${SQL_PASSWORD}
+      SQL_HOST: ${SQL_HOST}
+      SQL_PORT: ${SQL_PORT}
+    ports:
+      - "8000:8000"
 volumes:
   postgres_data:

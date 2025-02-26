@@ -16,6 +16,15 @@ import django
 from django.utils.encoding import smart_str
 django.utils.encoding.smart_text = smart_str
 from django.urls import reverse
+import mimetypes
+
+# Ignore missing .map files in WhiteNoise
+WHITENOISE_MANIFEST_STRICT = False
+WHITENOISE_KEEP_ONLY_HASHED_FILES = True
+
+# Ensure JavaScript files are served correctly
+mimetypes.add_type("application/javascript", ".js", True)
+mimetypes.add_type("text/css", ".css", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,12 +34,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z%#8zw1_f387q!asq+ej*m*et1cy(3i2=_8!1u_-48w7rt5@#u'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = [".localhost",".127.0.0.1", ".ngrok.io", ".ngrok-free.app", ".code.run"]
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS",'127.0.0.1').split(",")
 
 
 # Application definition
@@ -85,6 +94,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -123,12 +133,12 @@ WSGI_APPLICATION = 'anansi_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ.get("SQL_ENGINE",'django.db.backends.sqlite3'),
-        'NAME': os.environ.get("SQL_DATABASE", os.path.join(BASE_DIR / 'db.sqlite3')),
-        'USER': os.environ.get("SQL_USER", "user"),
-        'PASSWORD': os.environ.get("SQL_PASSWORD", "password"),
-        "HOST": os.environ.get("SQL_HOST", "localhost"),
-        "PORT": os.environ.get("SQL_PORT", "5432"),
+        'ENGINE': os.getenv('SQL_ENGINE', 'django.db.backends.postgresql'),
+        'NAME': os.getenv('SQL_NAME', 'dockerdjango'),
+        'USER': os.getenv('SQL_USERNAME', 'dbuser'),
+        'PASSWORD': os.getenv('SQL_PASSWORD', 'dbpassword'),
+        'HOST': os.getenv('SQL_HOST', 'db'),
+        'PORT': os.getenv('SQL_PORT', '5432'),
     }
 }
 
@@ -174,7 +184,9 @@ STATICFILES_FINDERS = [
 
 STATIC_URL = '/static/'
 STATIC_ROOT = str(BASE_DIR/ 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), "src",]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = str(BASE_DIR / 'media')

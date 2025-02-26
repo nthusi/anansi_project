@@ -11,3 +11,5 @@ readtime==3.0.0
 wagtail-metadata==5.0.0
 wagtail-newsletter[mailchimp,mrml]==0.2.1
 django-allauth
+whitenoise
+gunicorn

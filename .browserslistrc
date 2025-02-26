@@ -4,8 +4,10 @@ last 2 versions
 not ie > 0
 not ie_mob > 0
 Firefox ESR
+safari >= 14
 
 [development]
 last 1 chrome version
 last 1 firefox version
 last 1 edge version
+last 1 safari version

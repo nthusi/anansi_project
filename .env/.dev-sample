@@ -1,6 +1,0 @@
-SQL_ENGINE=django.db.backends.postgresql
-SQL_DATABASE=anansi_project
-SQL_USER=anansi_project
-SQL_PASSWORD=anansi_project
-SQL_HOST=db
-SQL_PORT=5432
