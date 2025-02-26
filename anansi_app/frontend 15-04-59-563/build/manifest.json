@@ -1,0 +1,12 @@
+{
+  "entrypoints": {
+    "app": {
+      "assets": {
+        "js": [
+          "http://localhost:9091/js/runtime.js"
+        ]
+      }
+    }
+  },
+  "runtime.js": "http://localhost:9091/js/runtime.js"
+}

@@ -16,7 +16,6 @@ import django
 from django.utils.encoding import smart_str
 django.utils.encoding.smart_text = smart_str
 from django.urls import reverse
-from wagtail_nav_menus.defaults import WAGTAIL_NAV_MENU_TYPES_DEFAULT
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z%#8zw1_f387q!asq+ej*m*et1cy(3i2=_8!1u_-48w7rt5@#u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [".localhost",".127.0.0.1", ".ngrok.io", ".ngrok-free.app", ".code.run"]
 
@@ -80,7 +79,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'wagtail_nav_menus',
 
 
 ]

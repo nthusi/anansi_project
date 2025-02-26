@@ -1,4 +1,4 @@
-{% load static wagtailuserbar webpack_loader blogapp_tags %}
+{% load wagtailcore_tags static wagtailuserbar webpack_loader blogapp_tags %}
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -54,10 +54,10 @@
         </div>
     </body>
 
-{% javascript_pack 'app' %}
+    {% javascript_pack 'app' %}
 
-{% block extra_js %}
+    {% block extra_js %}
 
-{% endblock %}
+    {% endblock %}
 </html>
 
