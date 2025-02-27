@@ -3,6 +3,8 @@
 
 
 
+
+
 <!DOCTYPE html>
 <html class="h-100" lang="en">
     <head>
@@ -27,7 +29,7 @@
         
 
         {# Global stylesheets #}
-        {% stylesheet_pack 'app' %}
+        {% render_bundle 'app' 'css' %}
 
         {% block extra_css %}
 
