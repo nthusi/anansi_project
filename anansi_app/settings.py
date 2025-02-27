@@ -27,7 +27,7 @@ mimetypes.add_type("application/javascript", ".js", True)
 mimetypes.add_type("text/css", ".css", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path("/var/www/anansi_project")
 
 
 # Quick-start development settings - unsuitable for production
@@ -201,18 +201,20 @@ WAGTAIL_SITE_NAME = 'Anansi'
 WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", "http://localhost:8000")
 
 STATICFILES_DIRS = [
-    str(BASE_DIR / "frontend"),
+    os.path.join(BASE_DIR, "static"),   # Main static files
+    os.path.join(BASE_DIR, "frontend/build"),  # Webpack build output
+    os.path.join(BASE_DIR, "src"),  # Added 'src' directory
 ]
 
 WEBPACK_LOADER = {
     'MANIFEST_FILE': str(BASE_DIR / "frontend/build/manifest.json"),
 }
 
-WAGTAILSEARCH_BACKENDS = {
-    'default': {
-        'BACKEND': 'wagtail.search.backends.database',
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'frontend/build/',  # Ensure Webpack builds here
+        'STATS_FILE': os.path.join(BASE_DIR, 'frontend', 'build', 'manifest.json'),
     }
-    
 }
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
