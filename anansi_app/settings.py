@@ -183,8 +183,12 @@ STATICFILES_FINDERS = [
 ]
 
 STATIC_URL = '/static/'
-STATIC_ROOT = str(BASE_DIR/ 'static')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), "src",]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),  # Your project's static assets
+    os.path.join(BASE_DIR, "frontend/build"),  # Webpack build output
+    os.path.join(BASE_DIR, "src"),  # Additional static files
+]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
@@ -199,12 +203,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 WAGTAIL_SITE_NAME = 'Anansi'
 
 WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", "http://localhost:8000")
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),   # Main static files
-    os.path.join(BASE_DIR, "frontend/build"),  # Webpack build output
-    os.path.join(BASE_DIR, "src"),  # Added 'src' directory
-]
 
 WEBPACK_LOADER = {
     'MANIFEST_FILE': str(BASE_DIR / "frontend/build/manifest.json"),
