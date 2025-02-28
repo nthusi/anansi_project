@@ -206,10 +206,6 @@ WAGTAIL_SITE_NAME = 'Anansi'
 WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", "http://localhost:8000")
 
 WEBPACK_LOADER = {
-    'MANIFEST_FILE': str(BASE_DIR / "frontend/build/manifest.json"),
-}
-
-WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'frontend/build/',  # Ensure Webpack builds here
         'STATS_FILE': os.path.join(BASE_DIR, 'frontend', 'build', 'manifest.json'),
