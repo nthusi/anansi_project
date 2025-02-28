@@ -17,12 +17,11 @@
         </title>
         <meta name="description" content="{{ page.search_description }}" />
         {% endblock %}
-        
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="{% static 'css/app.css' %}">
 
         {# Global stylesheets #}
-        {% stylesheet_pack 'app' %}
+        {% render_bundle 'app'%}
 
         {% block extra_css %}
 

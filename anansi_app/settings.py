@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
 
+    'webpack_loader',
     'webpack_boilerplate',
     'anansi_app.blog',
 
@@ -189,7 +190,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "frontend/build"),  # Webpack build output
     os.path.join(BASE_DIR, "src"),  # Additional static files
 ]
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 
 MEDIA_URL = '/media/'
