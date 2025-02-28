@@ -5,6 +5,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html class="h-100" lang="en">
     <head>
@@ -24,12 +25,11 @@
         {% endblock %}
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static 'css/app.css' %}">
+        <link rel="stylesheet" href="{{ css_bundle }}">
         
         
 
         {# Global stylesheets #}
-        {% render_bundle 'app' 'css' %}
 
         {% block extra_css %}
 
