@@ -25,10 +25,10 @@
         {% endblock %}
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{{ css_bundle }}">
+        <link rel="stylesheet" href="{% static 'css/app.css' %}">
         
         
-
+        {% stylesheet_pack 'app' %}
         {# Global stylesheets #}
 
         {% block extra_css %}
