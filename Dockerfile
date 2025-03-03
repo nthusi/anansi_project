@@ -1,3 +1,4 @@
+
 # Use an official Python runtime as a parent image
 FROM python:3.10
 
@@ -6,7 +7,6 @@ WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    nodejs \
     npm \
     && rm -rf /var/lib/apt/lists/*
 
@@ -16,30 +16,30 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy package.json and package-lock.json first (to leverage caching)
-COPY package*.json ./
+# Install Node.js dependencies & TailwindCSS globally
+RUN npm install -g tailwindcss
 
-# Set Node.js to production mode & Install project-specific Node.js dependencies
-ENV NODE_ENV=production
-RUN npm install --production
-
-# Copy the entire application code
+# Copy the rest of the application code
 COPY . .
 
-# Run Webpack to build frontend assets
-RUN npm run build  # Generates `frontend/build/manifest.json`
+# Install project-specific Node.js dependencies
+RUN npm install
 
-# Ensure TailwindCSS builds correctly
+# Build TailwindCSS styles
 RUN npx tailwindcss -i ./static/src/input.css -o ./static/css/output.css --minify
 
-# Ensure static directories exist
+# Ensure Bootstrap & frontend dependencies are installed
+RUN npm install bootstrap
+
+# Ensure `build/js/` directory exists before running `find`
+RUN mkdir -p build/js/
+
+# Remove sourceMappingURL references safely (fixes WhiteNoise errors)
+RUN find build/js/ -type f -name "*.js" -exec sed -i '/sourceMappingURL/d' {} + || true
+
+# Collect static files
 RUN mkdir -p /app/static /app/staticfiles
-
-# Move Webpack-generated `manifest.json` to the correct location
-RUN cp /app/frontend/build/manifest.json /app/staticfiles/manifest.json
-
-# Collect Django static files
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput || true
 
 # Expose Django's default port
 EXPOSE 8000

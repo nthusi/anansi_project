@@ -27,7 +27,7 @@ mimetypes.add_type("application/javascript", ".js", True)
 mimetypes.add_type("text/css", ".css", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path("/var/www/anansi_project")
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
 
-    'webpack_loader',
     'webpack_boilerplate',
     'anansi_app.blog',
 
@@ -184,13 +183,9 @@ STATICFILES_FINDERS = [
 ]
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),  # Your project's static assets
-    os.path.join(BASE_DIR, "frontend/build"),  # Webpack build output
-    os.path.join(BASE_DIR, "src"),  # Additional static files
-]
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+STATIC_ROOT = str(BASE_DIR/ 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), "src",]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
 MEDIA_URL = '/media/'
@@ -205,11 +200,19 @@ WAGTAIL_SITE_NAME = 'Anansi'
 
 WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", "http://localhost:8000")
 
+STATICFILES_DIRS = [
+    str(BASE_DIR / "frontend"),
+]
+
 WEBPACK_LOADER = {
-    'DEFAULT': {
-        'BUNDLE_DIR_NAME': 'frontend/build/',  # Ensure Webpack builds here
-        'STATS_FILE': os.path.join(BASE_DIR, 'frontend', 'build', 'manifest.json'),
+    'MANIFEST_FILE': str(BASE_DIR / "frontend/build/manifest.json"),
+}
+
+WAGTAILSEARCH_BACKENDS = {
+    'default': {
+        'BACKEND': 'wagtail.search.backends.database',
     }
+    
 }
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"

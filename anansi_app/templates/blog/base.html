@@ -21,7 +21,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="{% static 'css/app.css' %}">
         {# Global stylesheets #}
-        {% render_bundle 'app' 'css' %}
+        {% stylesheet_pack 'app' %}
 
         {% block extra_css %}
 

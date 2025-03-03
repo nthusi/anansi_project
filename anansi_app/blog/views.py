@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from wagtail.models import Site
+import json
+import os
+from django.conf import settings
 
 class RobotsView(TemplateView):
 
@@ -14,3 +17,19 @@ class RobotsView(TemplateView):
         return context
 
 # Create your views here.
+
+
+
+def get_webpack_bundle():
+    manifest_path = os.path.join(settings.BASE_DIR, "static", "manifest.json")
+    
+    if os.path.exists(manifest_path):
+        with open(manifest_path) as f:
+            manifest = json.load(f)
+        return manifest.get("app.css", "")  # Change "app.css" if needed
+    
+    return ""
+
+def my_view(request):
+    css_bundle = get_webpack_bundle()
+    return render(request, "base.html", {"css_bundle": css_bundle})

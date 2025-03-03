@@ -3,9 +3,6 @@
 
 
 
-
-
-
 <!DOCTYPE html>
 <html class="h-100" lang="en">
     <head>
@@ -28,8 +25,9 @@
         <link rel="stylesheet" href="{% static 'css/app.css' %}">
         
         
-        {% stylesheet_pack 'app' %}
+
         {# Global stylesheets #}
+        {% stylesheet_pack 'app' %}
 
         {% block extra_css %}
 
