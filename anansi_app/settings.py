@@ -200,10 +200,6 @@ WAGTAIL_SITE_NAME = 'Anansi'
 
 WAGTAILADMIN_BASE_URL = os.environ.get("WAGTAILADMIN_BASE_URL", "http://localhost:8000")
 
-STATICFILES_DIRS = [
-    str(BASE_DIR / "frontend"),
-]
-
 WEBPACK_LOADER = {
     'MANIFEST_FILE': str(BASE_DIR / "frontend/build/manifest.json"),
 }
