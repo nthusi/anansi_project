@@ -35,5 +35,13 @@ services:
       SQL_PORT: ${SQL_PORT}
     ports:
       - "8000:8000"
+      - "3000:3000"
+    volumes:
+      - static_volume:/app/static
+      - frontend_build:/app/frontend/build
+    command: ["sh", "-c", "npm install && npm run build && python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000"]
+
 volumes:
   postgres_data:
+  static_volume:
+  frontend_build:

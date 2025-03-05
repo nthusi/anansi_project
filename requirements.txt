@@ -14,3 +14,4 @@ django-allauth
 whitenoise
 gunicorn
 django-webpack-loader
+python-dotenv

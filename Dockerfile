@@ -1,4 +1,3 @@
-
 # Use an official Python runtime as a parent image
 FROM python:3.10
 
@@ -26,23 +25,22 @@ COPY . .
 RUN npm install
 
 # Build TailwindCSS styles
-RUN npx tailwindcss -i ./static/src/input.css -o ./static/css/output.css --minify
+RUN npm run build
 
 # Ensure Bootstrap & frontend dependencies are installed
 RUN npm install bootstrap
 
-# Ensure `build/js/` directory exists before running `find`
-RUN mkdir -p build/js/
+# Rebuild Bootstrap to ensure source maps exist
+RUN npm rebuild bootstrap
 
-# Remove sourceMappingURL references safely (fixes WhiteNoise errors)
-RUN find build/js/ -type f -name "*.js" -exec sed -i '/sourceMappingURL/d' {} + || true
+# Ensure `build/js/` directory exists before running `find`
+RUN mkdir -p build/js/ && find build/js/ -type f -name "*.js" -exec sed -i '/sourceMappingURL/d' {} + || true
 
 # Collect static files
-RUN mkdir -p /app/static /app/staticfiles
 RUN python manage.py collectstatic --noinput || true
 
-# Expose Django's default port
-EXPOSE 8000
+# Expose necessary ports
+EXPOSE 8000 3000
 
-# Run Gunicorn to serve the Django application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "anansi_app.wsgi:application"]
+# Run the application
+CMD ["sh", "-c", "npm run start & gunicorn --bind 0.0.0.0:8000 anansi_app.wsgi:application"]
