@@ -187,7 +187,7 @@ STATICFILES_FINDERS = [
 
 STATIC_URL = '/static/'
 STATIC_ROOT = str(BASE_DIR/ 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), "src", "frontend"]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "frontend/build")]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
